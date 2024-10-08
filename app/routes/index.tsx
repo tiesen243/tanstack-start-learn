@@ -1,24 +1,16 @@
-import { useQuery } from '@tanstack/react-query'
+import { useSuspenseQuery } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
 
 import { Card, CardDescription, CardFooter, CardTitle } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
+import { productsQuery } from '@/lib/api/product'
 
 export const Route = createFileRoute('/')({
+  loader: ({ context }) => {
+    void context.queryClient.ensureQueryData(productsQuery())
+  },
   component: () => {
-    const { data, isLoading } = useQuery({
-      queryKey: ['products'],
-      queryFn: async () => {
-        const products = await fetch(
-          `https://yuki.tiesen.id.vn/api/trpc/product.getAll?input={"json":{}}`,
-        )
-        const json = (await products.json()) as {
-          result: { data: { json: { products: Product[]; totalPage: number } } }
-        }
-
-        return json.result.data.json
-      },
-    })
+    const { data, isLoading } = useSuspenseQuery(productsQuery())
 
     return (
       <section className="grid grid-cols-3 gap-4">
@@ -49,10 +41,3 @@ export const Route = createFileRoute('/')({
     )
   },
 })
-
-interface Product {
-  id: string
-  name: string
-  image: string
-  price: number
-}

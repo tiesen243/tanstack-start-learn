@@ -1,11 +1,13 @@
 import type { Config } from 'tailwindcss'
 import animate from 'tailwindcss-animate'
+import { fontFamily } from 'tailwindcss/defaultTheme'
 
 const config = {
   darkMode: ['class'],
-  content: ['./src/**/*.{ts,tsx}'],
+  content: ['./app/**/*.{ts,tsx}'],
   theme: {
     extend: {
+      fontFamily: { sans: ['Inter', ...fontFamily.sans] },
       container: {
         center: true,
         padding: '2rem',

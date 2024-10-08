@@ -19,13 +19,13 @@
     "noEmit": true,
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
 
     /* Path Aliases */
     "baseUrl": ".",
-    "paths": { "@/*": ["./src/*"] }
+    "paths": { "@/*": ["./app/*"] }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.cjs", "**/*.js"],
+  "include": ["**/*.ts", "**/*.tsx", "**/*.cjs", "**/*.js"],
   "exclude": ["node_modules"]
 }
