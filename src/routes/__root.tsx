@@ -1,5 +1,6 @@
 import type { QueryClient } from '@tanstack/react-query'
 import { QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { createRootRoute, Outlet, ScrollRestoration } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/router-devtools'
 import { ThemeProvider } from 'next-themes'
@@ -18,7 +19,8 @@ export const Route = createRootRoute({
         </main>
 
         <ScrollRestoration />
-        <TanStackRouterDevtools position="bottom-right" />
+        <ReactQueryDevtools initialIsOpen={false} position="bottom" />
+        <TanStackRouterDevtools initialIsOpen={false} position="bottom-left" />
       </QueryClientProvider>
     </ThemeProvider>
   ),

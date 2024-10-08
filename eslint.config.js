@@ -1,4 +1,5 @@
 import eslint from '@eslint/js'
+import pluginQuery from '@tanstack/eslint-plugin-query'
 import reactPlugin from 'eslint-plugin-react'
 import hooksPlugin from 'eslint-plugin-react-hooks'
 import tseslint from 'typescript-eslint'
@@ -50,7 +51,17 @@ const react = tseslint.config({
   },
 })
 
+const reactQuery = tseslint.config({
+  files: ['**/*.ts', '**/*.tsx'],
+  plugins: {
+    '@tanstack/query': pluginQuery,
+  },
+  rules: {
+    '@tanstack/query/exhaustive-deps': 'error',
+  },
+})
+
 /** @type {import('typescript-eslint').Config} */
-const config = [{ ignores: ['dist/**'] }, ...base, ...react]
+const config = [{ ignores: ['dist/**'] }, ...base, ...react, ...reactQuery]
 
 export default config
