@@ -23,7 +23,11 @@ export const getProduct = createServerFn('GET', async (id: string) => {
     `https://yuki.tiesen.id.vn/api/trpc/product.getOne?input={"json":{"id":"${id}"}}`,
   )
   const json = (await product.json()) as {
-    result: { data: { json: Product } }
+    result: {
+      data: {
+        json: { product: Product; relatedProducts: Product[] }
+      }
+    }
   }
 
   return json.result.data.json
@@ -40,4 +44,22 @@ interface Product {
   name: string
   image: string
   price: number
+  stock: number
+  description: string
+  category: {
+    id: string
+    name: string
+  }
+  owner: {
+    id: string
+    email: string
+    name: string
+    avatar: string
+    discord?: {
+      id: string
+      username: string
+      avatar: string
+    }
+    createdAt: string
+  }
 }
