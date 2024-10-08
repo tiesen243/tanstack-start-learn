@@ -50,32 +50,7 @@ const react = tseslint.config({
   },
 })
 
-export const restrictEnvAccess = tseslint.config(
-  { ignores: ['**/env.js'] },
-  {
-    files: ['**/*.js', '**/*.ts', '**/*.tsx'],
-    rules: {
-      'no-restricted-properties': [
-        'error',
-        {
-          object: 'process',
-          property: 'env',
-          message: "Use `import { env } from '@/env'` instead to ensure validated types.",
-        },
-      ],
-      'no-restricted-imports': [
-        'error',
-        {
-          name: 'process',
-          importNames: ['env'],
-          message: "Use `import { env } from '@/env'` instead to ensure validated types.",
-        },
-      ],
-    },
-  },
-)
-
 /** @type {import('typescript-eslint').Config} */
-const config = [{ ignores: ['routeTree.gen.ts'] }, ...base, ...react, ...restrictEnvAccess]
+const config = [{ ignores: ['dist/**'] }, ...base, ...react]
 
 export default config
