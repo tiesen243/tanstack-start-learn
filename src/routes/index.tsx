@@ -37,7 +37,7 @@ export const Route = createFileRoute('/')({
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="aspect-[2/3] h-auto w-full object-cover"
+                  className="aspect-[2/3] h-auto w-full rounded-t-lg object-cover"
                 />
                 <CardFooter className="flex-col items-start gap-2 pt-4">
                   <CardTitle>{product.name}</CardTitle>

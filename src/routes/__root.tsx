@@ -19,8 +19,13 @@ export const Route = createRootRoute({
         </main>
 
         <ScrollRestoration />
-        <ReactQueryDevtools initialIsOpen={false} position="bottom" />
-        <TanStackRouterDevtools initialIsOpen={false} position="bottom-left" />
+
+        {import.meta.env.DEV && (
+          <>
+            <ReactQueryDevtools initialIsOpen={false} position="bottom" />
+            <TanStackRouterDevtools initialIsOpen={false} position="bottom-left" />
+          </>
+        )}
       </QueryClientProvider>
     </ThemeProvider>
   ),
